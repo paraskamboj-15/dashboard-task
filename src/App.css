@@ -1,0 +1,231 @@
+:root {
+  --bg-primary: #1e202a;
+  --bg-secondary: #272935;
+  --text-primary: #f0f0f0;
+  --text-secondary: #a0a0a0;
+  --accent-primary: #6c5ce7;
+  --accent-secondary: #a29bfe;
+  --shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
+  --border-radius: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  grid-template-areas:
+    "header header header header"
+    "cards cards cards cards"
+    "pieChart barChart barChart barChart"
+    "dataTable dataTable dataTable dataTable";
+  gap: 20px;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.widget {
+  background-color: var(--bg-secondary);
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease-in-out;
+}
+
+.widget:hover {
+  transform: translateY(-5px);
+}
+
+.widget-title {
+  margin-bottom: 20px;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+
+.header {
+  grid-area: header;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-secondary);
+  padding: 15px 25px;
+  border-radius: var(--border-radius);
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-actions input[type="date"] {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.user-profile {
+  font-size: 2rem;
+  color: var(--accent-secondary);
+}
+
+
+.cards {
+  grid-area: cards;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background-color: var(--bg-secondary);
+  padding: 20px;
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease-in-out;
+}
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-card .icon {
+  font-size: 2.5rem;
+  padding: 10px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.stat-card .text-content .title {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.stat-card .text-content .value {
+  color: var(--text-primary);
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+
+.pie-chart-box {
+  grid-area: pieChart;
+  height: 350px; 
+}
+
+.bar-chart-box {
+  grid-area: barChart;
+  height: 350px;
+}
+
+.recharts-default-tooltip {
+  background-color: var(--bg-primary) !important;
+  border-color: #444 !important;
+  border-radius: var(--border-radius) !important;
+}
+
+
+.table-container {
+  grid-area: dataTable;
+  overflow: hidden; 
+}
+.table-scroll-wrapper {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.data-table th, .data-table td {
+  padding: 15px;
+  white-space: nowrap; 
+}
+
+.data-table thead {
+  background-color: #3a3d4d;
+}
+
+.data-table th {
+  color: var(--text-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.data-table tbody tr {
+  border-bottom: 1px solid #333;
+  transition: background-color 0.2s ease;
+}
+
+.data-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.data-table tbody tr:hover {
+  background-color: #3a3d4d;
+}
+
+
+
+@media (max-width: 1024px) {
+  .dashboard {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "header header"
+      "cards cards"
+      "pieChart barChart"
+      "dataTable dataTable";
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "cards"
+      "barChart"
+      "pieChart"
+      "dataTable";
+    padding: 15px;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
